@@ -1,9 +1,14 @@
-# 🔡 Braille Writer — Joystick → MAX7219 Matrix → I2C LCD
+# 🔡 Braille Writer - Joystick → MAX7219 Matrix → I2C LCD
 
 An Arduino-based Braille input device where you navigate a 2×3 Braille dot grid using a joystick, toggle dots ON/OFF, and confirm letters to an I2C LCD display. Supports the full 26-letter Grade 1 Braille alphabet.
 
 ---
+## Preview
 
+![Demo](https://github.com/Obedientononline/Braille_writer_arduino/raw/250a5418fee1b55c68fd382cf47e90ee38a9f8b7/Images/project_photo.jpeg)
+![Demo](https://github.com/Obedientononline/Braille_writer_arduino/raw/250a5418fee1b55c68fd382cf47e90ee38a9f8b7/Images/project_photo2.jpeg)
+
+---
 ## ✨ Features
 
 - **2×3 Braille zone** rendered inside a visible border on the 8×8 LED matrix
@@ -27,6 +32,17 @@ An Arduino-based Braille input device where you navigate a 2×3 Braille dot grid
 | Analog Joystick Module | 1 | VRx, VRy, SW pins used |
 | Breadboard + Jumper Wires | — | — |
 
+## Images
+
+### Joystick
+![Demo](https://github.com/Obedientononline/Braille_writer_arduino/raw/250a5418fee1b55c68fd382cf47e90ee38a9f8b7/Images/Components/HW-504-JOYSTICK.jpg)
+
+### LCD Display
+![Demo](https://github.com/Obedientononline/Braille_writer_arduino/raw/250a5418fee1b55c68fd382cf47e90ee38a9f8b7/Images/Components/I2C-LCD-DISPLAY.jpg)
+
+### 8x8 Dot Matrix
+![Demo](https://github.com/Obedientononline/Braille_writer_arduino/raw/250a5418fee1b55c68fd382cf47e90ee38a9f8b7/Images/Components/MAX7219-8x8-Dot-Matrix.jpg)
+
 ---
 
 ## 🔌 Wiring
@@ -43,6 +59,10 @@ An Arduino-based Braille input device where you navigate a 2×3 Braille dot grid
 | I2C LCD SCL | A5 |
 
 ---
+
+## 📟 Circuit Connections
+
+![Demo](https://github.com/Obedientononline/Braille_writer_arduino/raw/250a5418fee1b55c68fd382cf47e90ee38a9f8b7/Images/braille_circuit_diagram.svg)
 
 ## 📐 Braille Zone Layout (on 8×8 Matrix)
 
@@ -148,4 +168,4 @@ Braille_writer_arduino/
 
 ## 📄 License
 
-MIT License — free to use, modify, and share with attribution.
+MIT License - free to use, modify, and share with attribution.

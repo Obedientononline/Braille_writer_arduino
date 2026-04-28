@@ -168,4 +168,5 @@ Braille_writer_arduino/
 
 ## 📄 License
 
-MIT License - free to use, modify, and share with attribution.
+Copyright (c) 2026 Shivani R
+All rights reserved.

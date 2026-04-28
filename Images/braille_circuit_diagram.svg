@@ -1,0 +1,438 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="1000" height="720">
+  <defs>
+    <style>
+      .bg { fill: #0f1117; }
+      .title-text { font-family: 'Courier New', monospace; font-size: 18px; font-weight: bold; fill: #e2e8f0; letter-spacing: 2px; }
+      .sub-text { font-family: 'Courier New', monospace; font-size: 11px; fill: #64748b; letter-spacing: 1px; }
+      .chip-body { fill: #1e2533; stroke: #334155; stroke-width: 1.5; }
+      .chip-label { font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold; fill: #94a3b8; }
+      .chip-title { font-family: 'Courier New', monospace; font-size: 10px; font-weight: bold; fill: #cbd5e1; }
+      .pin-label { font-family: 'Courier New', monospace; font-size: 9px; fill: #94a3b8; }
+      .pin-rect { fill: #334155; stroke: #475569; stroke-width: 0.5; }
+
+      /* Wire colours */
+      .w-gnd  { stroke: #6b7280; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .w-vcc  { stroke: #ef4444; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .w-data { stroke: #f59e0b; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .w-sda  { stroke: #8b5cf6; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .w-scl  { stroke: #06b6d4; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .w-green{ stroke: #22c55e; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .w-clk  { stroke: #f97316; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .w-cs   { stroke: #ec4899; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+      .dot { stroke-width: 0; }
+      .legend-line { stroke-width: 2.5; fill: none; stroke-linecap: round; }
+      .legend-text { font-family: 'Courier New', monospace; font-size: 10px; fill: #94a3b8; }
+      .section-label { font-family: 'Courier New', monospace; font-size: 9px; fill: #475569; letter-spacing: 1px; }
+      .note-box { fill: #1a2235; stroke: #2d3f5a; stroke-width: 1; }
+      .note-text { font-family: 'Courier New', monospace; font-size: 9px; fill: #64748b; }
+      .highlight { fill: #1e2d1e; stroke: #22c55e; stroke-width: 1; stroke-dasharray: 4,2; }
+    </style>
+
+    <!-- Arrowhead -->
+    <marker id="arr" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 1L7 4L1 7" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="dot-gnd" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5">
+      <circle cx="2.5" cy="2.5" r="2" fill="#6b7280"/>
+    </marker>
+
+    <!-- Grid pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0L0 0 0 20" fill="none" stroke="#161b27" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="720" class="bg"/>
+  <rect width="1000" height="720" fill="url(#grid)"/>
+
+  <!-- Header bar -->
+  <rect x="0" y="0" width="1000" height="48" fill="#0a0d14"/>
+  <line x1="0" y1="48" x2="1000" y2="48" stroke="#1e2d47" stroke-width="1"/>
+  <text x="24" y="30" class="title-text">BRAILLE WRITER — CIRCUIT DIAGRAM</text>
+  <text x="24" y="43" class="sub-text">JOYSTICK → MAX7219 LED MATRIX → I2C LCD → ARDUINO UNO</text>
+  <text x="920" y="30" class="sub-text" text-anchor="end">v1.0</text>
+  <text x="920" y="43" class="sub-text" text-anchor="end">Arduino Uno R3</text>
+
+  <!-- ══════════════════════════════════════════════════
+       ARDUINO UNO — Centre
+  ══════════════════════════════════════════════════ -->
+  <!-- Board outline -->
+  <rect x="368" y="200" width="264" height="360" rx="8" fill="#0d1f0d" stroke="#1a3a1a" stroke-width="2"/>
+  <rect x="368" y="200" width="264" height="360" rx="8" fill="none" stroke="#22c55e" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Board label -->
+  <text x="500" y="222" class="chip-label" text-anchor="middle" font-size="13">ARDUINO UNO R3</text>
+  <text x="500" y="236" class="section-label" text-anchor="middle">ATmega328P</text>
+
+  <!-- Left-side pins (A0..A5, GND, 5V) -->
+  <!-- Pin rows on left side -->
+  <!-- GND -->
+  <rect x="356" y="258" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="366" y="270" class="pin-label" text-anchor="middle">GND</text>
+  <!-- 5V -->
+  <rect x="356" y="278" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="366" y="290" class="pin-label" text-anchor="middle">5V</text>
+  <!-- A0 -->
+  <rect x="356" y="298" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="366" y="310" class="pin-label" text-anchor="middle">A0</text>
+  <!-- A1 -->
+  <rect x="356" y="318" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="366" y="330" class="pin-label" text-anchor="middle">A1</text>
+  <!-- A4 SDA -->
+  <rect x="356" y="338" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="366" y="350" class="pin-label" text-anchor="middle">A4</text>
+  <!-- A5 SCL -->
+  <rect x="356" y="358" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="366" y="370" class="pin-label" text-anchor="middle">A5</text>
+
+  <!-- Right-side pins (D6, D10, D11, D13, GND, 5V) -->
+  <!-- GND right -->
+  <rect x="622" y="258" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="632" y="270" class="pin-label" text-anchor="middle">GND</text>
+  <!-- 5V right -->
+  <rect x="622" y="278" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="632" y="290" class="pin-label" text-anchor="middle">5V</text>
+  <!-- D6 -->
+  <rect x="622" y="298" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="632" y="310" class="pin-label" text-anchor="middle">D6</text>
+  <!-- D10 CS -->
+  <rect x="622" y="318" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="632" y="330" class="pin-label" text-anchor="middle">D10</text>
+  <!-- D11 MOSI -->
+  <rect x="622" y="338" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="632" y="350" class="pin-label" text-anchor="middle">D11</text>
+  <!-- D13 SCK -->
+  <rect x="622" y="358" width="22" height="16" rx="2" class="pin-rect"/>
+  <text x="632" y="370" class="pin-label" text-anchor="middle">D13</text>
+
+  <!-- Arduino chip symbol inside board -->
+  <rect x="430" y="290" width="140" height="90" rx="4" fill="#0f1a0f" stroke="#22c55e" stroke-width="1" opacity="0.6"/>
+  <text x="500" y="320" class="chip-title" text-anchor="middle" fill="#22c55e" opacity="0.8">ATmega328P</text>
+  <!-- Pin dots on chip sides -->
+  <circle cx="430" cy="305" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="430" cy="320" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="430" cy="335" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="430" cy="350" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="430" cy="365" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="570" cy="305" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="570" cy="320" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="570" cy="335" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="570" cy="350" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="570" cy="365" r="2" fill="#22c55e" opacity="0.5"/>
+
+  <!-- USB port symbol at bottom of Arduino -->
+  <rect x="470" y="540" width="60" height="20" rx="2" fill="#1a2a1a" stroke="#334433" stroke-width="1"/>
+  <text x="500" y="554" class="section-label" text-anchor="middle" font-size="8">USB</text>
+  <!-- Reset button -->
+  <rect x="620" y="540" width="20" height="12" rx="2" fill="#1a2a1a" stroke="#334433" stroke-width="1"/>
+  <text x="630" y="550" class="section-label" text-anchor="middle" font-size="7">RST</text>
+
+  <!-- ══════════════════════════════════════════════════
+       JOYSTICK MODULE — Left
+  ══════════════════════════════════════════════════ -->
+  <rect x="48" y="220" width="160" height="200" rx="6" fill="#1a1a2e" stroke="#2d2d5a" stroke-width="1.5"/>
+  <text x="128" y="242" class="chip-label" text-anchor="middle" font-size="11">JOYSTICK</text>
+  <text x="128" y="255" class="section-label" text-anchor="middle">KY-023 MODULE</text>
+
+  <!-- Joystick visual (circle + stick) -->
+  <circle cx="128" cy="330" r="32" fill="#0f0f1e" stroke="#3d3d7a" stroke-width="1.5"/>
+  <circle cx="128" cy="330" r="18" fill="#1a1a3a" stroke="#4d4d8a" stroke-width="1"/>
+  <circle cx="128" cy="330" r="8" fill="#2d2d5a" stroke="#6d6d9a" stroke-width="1"/>
+  <!-- Axis lines -->
+  <line x1="96" y1="330" x2="160" y2="330" stroke="#3d3d7a" stroke-width="0.5"/>
+  <line x1="128" y1="298" x2="128" y2="362" stroke="#3d3d7a" stroke-width="0.5"/>
+
+  <!-- Joystick pins (right side) -->
+  <rect x="200" y="262" width="18" height="14" rx="2" class="pin-rect"/>
+  <text x="209" y="272" class="pin-label" text-anchor="middle">GND</text>
+  <rect x="200" y="280" width="18" height="14" rx="2" class="pin-rect"/>
+  <text x="209" y="290" class="pin-label" text-anchor="middle">+5V</text>
+  <rect x="200" y="298" width="18" height="14" rx="2" class="pin-rect"/>
+  <text x="209" y="308" class="pin-label" text-anchor="middle">VRx</text>
+  <rect x="200" y="316" width="18" height="14" rx="2" class="pin-rect"/>
+  <text x="209" y="326" class="pin-label" text-anchor="middle">VRy</text>
+  <rect x="200" y="334" width="18" height="14" rx="2" class="pin-rect"/>
+  <text x="209" y="344" class="pin-label" text-anchor="middle">SW</text>
+
+  <!-- Button indicator -->
+  <text x="128" y="400" class="section-label" text-anchor="middle">SHORT=toggle dot</text>
+  <text x="128" y="412" class="section-label" text-anchor="middle">LONG(1s)=confirm</text>
+
+  <!-- ══════════════════════════════════════════════════
+       MAX7219 LED MATRIX — Top right
+  ══════════════════════════════════════════════════ -->
+  <rect x="740" y="80" width="210" height="220" rx="6" fill="#1f1208" stroke="#3d2510" stroke-width="1.5"/>
+  <text x="845" y="102" class="chip-label" text-anchor="middle" font-size="11">MAX7219</text>
+  <text x="845" y="116" class="section-label" text-anchor="middle">8×8 LED MATRIX</text>
+
+  <!-- LED matrix grid -->
+  <rect x="770" y="124" width="110" height="110" rx="2" fill="#0f0a04" stroke="#2d1a08" stroke-width="1"/>
+  <!-- 8x8 grid of LEDs -->
+  <!-- Row 0 — border row (amber) -->
+  <circle cx="779" cy="133" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="793" cy="133" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="807" cy="133" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="821" cy="133" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="835" cy="133" r="4.5" fill="#1a1008"/>
+  <circle cx="849" cy="133" r="4.5" fill="#1a1008"/>
+  <circle cx="863" cy="133" r="4.5" fill="#1a1008"/>
+  <circle cx="877" cy="133" r="4.5" fill="#1a1008"/>
+  <!-- Row 1 -->
+  <circle cx="779" cy="147" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="793" cy="147" r="4.5" fill="#dc2626" opacity="0.9"/><!-- dot1 cursor blink -->
+  <circle cx="807" cy="147" r="4.5" fill="#1a1008"/>
+  <circle cx="821" cy="147" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="835" cy="147" r="4.5" fill="#1a1008"/>
+  <circle cx="849" cy="147" r="4.5" fill="#1a1008"/>
+  <circle cx="863" cy="147" r="4.5" fill="#1a1008"/>
+  <circle cx="877" cy="147" r="4.5" fill="#1a1008"/>
+  <!-- Row 2 -->
+  <circle cx="779" cy="161" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="793" cy="161" r="4.5" fill="#1a1008"/>
+  <circle cx="807" cy="161" r="4.5" fill="#1a1008"/>
+  <circle cx="821" cy="161" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="835" cy="161" r="4.5" fill="#1a1008"/>
+  <circle cx="849" cy="161" r="4.5" fill="#1a1008"/>
+  <circle cx="863" cy="161" r="4.5" fill="#1a1008"/>
+  <circle cx="877" cy="161" r="4.5" fill="#1a1008"/>
+  <!-- Row 3 -->
+  <circle cx="779" cy="175" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="793" cy="175" r="4.5" fill="#1a1008"/>
+  <circle cx="807" cy="175" r="4.5" fill="#1a1008"/>
+  <circle cx="821" cy="175" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="835" cy="175" r="4.5" fill="#1a1008"/>
+  <circle cx="849" cy="175" r="4.5" fill="#1a1008"/>
+  <circle cx="863" cy="175" r="4.5" fill="#1a1008"/>
+  <circle cx="877" cy="175" r="4.5" fill="#1a1008"/>
+  <!-- Row 4 border bottom -->
+  <circle cx="779" cy="189" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="793" cy="189" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="807" cy="189" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="821" cy="189" r="4.5" fill="#b45309" opacity="0.9"/>
+  <circle cx="835" cy="189" r="4.5" fill="#1a1008"/>
+  <circle cx="849" cy="189" r="4.5" fill="#1a1008"/>
+  <circle cx="863" cy="189" r="4.5" fill="#1a1008"/>
+  <circle cx="877" cy="189" r="4.5" fill="#1a1008"/>
+  <!-- Rows 5-7 all dim -->
+  <circle cx="779" cy="203" r="4.5" fill="#1a1008"/>
+  <circle cx="793" cy="203" r="4.5" fill="#1a1008"/>
+  <circle cx="807" cy="203" r="4.5" fill="#1a1008"/>
+  <circle cx="821" cy="203" r="4.5" fill="#1a1008"/>
+  <circle cx="835" cy="203" r="4.5" fill="#1a1008"/>
+  <circle cx="849" cy="203" r="4.5" fill="#1a1008"/>
+  <circle cx="863" cy="203" r="4.5" fill="#1a1008"/>
+  <circle cx="877" cy="203" r="4.5" fill="#1a1008"/>
+  <circle cx="779" cy="217" r="4.5" fill="#1a1008"/>
+  <circle cx="793" cy="217" r="4.5" fill="#1a1008"/>
+  <circle cx="807" cy="217" r="4.5" fill="#1a1008"/>
+  <circle cx="821" cy="217" r="4.5" fill="#1a1008"/>
+  <circle cx="835" cy="217" r="4.5" fill="#1a1008"/>
+  <circle cx="849" cy="217" r="4.5" fill="#1a1008"/>
+  <circle cx="863" cy="217" r="4.5" fill="#1a1008"/>
+  <circle cx="877" cy="217" r="4.5" fill="#1a1008"/>
+  <circle cx="779" cy="231" r="4.5" fill="#1a1008"/>
+  <circle cx="793" cy="231" r="4.5" fill="#1a1008"/>
+  <circle cx="807" cy="231" r="4.5" fill="#1a1008"/>
+  <circle cx="821" cy="231" r="4.5" fill="#1a1008"/>
+  <circle cx="835" cy="231" r="4.5" fill="#1a1008"/>
+  <circle cx="849" cy="231" r="4.5" fill="#1a1008"/>
+  <circle cx="863" cy="231" r="4.5" fill="#1a1008"/>
+  <circle cx="877" cy="231" r="4.5" fill="#1a1008"/>
+
+  <!-- MAX7219 pins (left side) -->
+  <rect x="730" y="258" width="20" height="14" rx="2" class="pin-rect"/>
+  <text x="740" y="268" class="pin-label" text-anchor="middle">GND</text>
+  <rect x="730" y="276" width="20" height="14" rx="2" class="pin-rect"/>
+  <text x="740" y="286" class="pin-label" text-anchor="middle">VCC</text>
+  <rect x="730" y="294" width="20" height="14" rx="2" class="pin-rect"/>
+  <text x="740" y="304" class="pin-label" text-anchor="middle">DIN</text>
+  <rect x="730" y="312" width="20" height="14" rx="2" class="pin-rect"/>
+  <text x="740" y="322" class="pin-label" text-anchor="middle">CLK</text>
+  <rect x="730" y="330" width="20" height="14" rx="2" class="pin-rect"/>
+  <text x="740" y="340" class="pin-label" text-anchor="middle">CS</text>
+
+  <!-- MAX7219 chip IC -->
+  <rect x="780" y="254" width="120" height="40" rx="3" fill="#0f0a04" stroke="#3d2510" stroke-width="1"/>
+  <text x="840" y="270" class="chip-title" text-anchor="middle" fill="#f59e0b" opacity="0.7">MAX7219</text>
+  <text x="840" y="284" class="section-label" text-anchor="middle" font-size="8">DRIVER IC</text>
+
+  <!-- ══════════════════════════════════════════════════
+       I2C LCD — Bottom
+  ══════════════════════════════════════════════════ -->
+  <rect x="310" y="590" width="380" height="110" rx="6" fill="#0a0f1f" stroke="#1a2a4a" stroke-width="1.5"/>
+  <text x="500" y="610" class="chip-label" text-anchor="middle" font-size="11">I2C LCD 16×2</text>
+  <text x="500" y="623" class="section-label" text-anchor="middle">PCF8574 BACKPACK  |  ADDR: 0x27 or 0x3F</text>
+
+  <!-- LCD screen area -->
+  <rect x="340" y="630" width="170" height="60" rx="3" fill="#001a00" stroke="#003300" stroke-width="1"/>
+  <rect x="344" y="634" width="162" height="24" rx="1" fill="#002200"/>
+  <rect x="344" y="662" width="162" height="24" rx="1" fill="#002200"/>
+  <!-- Character cells row 1 -->
+  <text x="350" y="651" font-family="Courier New" font-size="9" fill="#00ff41" opacity="0.9">B R A I L L E _ W R I T E R</text>
+  <text x="350" y="679" font-family="Courier New" font-size="9" fill="#00ff41" opacity="0.6">_ _ _ _ _ _ _ _ _ _ _ _ _ _</text>
+
+  <!-- LCD pins (right side of LCD) -->
+  <rect x="522" y="634" width="20" height="13" rx="2" class="pin-rect"/>
+  <text x="532" y="644" class="pin-label" text-anchor="middle">GND</text>
+  <rect x="522" y="651" width="20" height="13" rx="2" class="pin-rect"/>
+  <text x="532" y="661" class="pin-label" text-anchor="middle">VCC</text>
+  <rect x="522" y="668" width="20" height="13" rx="2" class="pin-rect"/>
+  <text x="532" y="678" class="pin-label" text-anchor="middle">SDA</text>
+  <rect x="522" y="685" width="20" height="13" rx="2" class="pin-rect"/>
+  <text x="532" y="695" class="pin-label" text-anchor="middle">SCL</text>
+
+  <!-- ══════════════════════════════════════════════════
+       WIRES — Joystick to Arduino LEFT SIDE
+  ══════════════════════════════════════════════════ -->
+  <!-- GND: joystick GND → Arduino GND (left) -->
+  <polyline points="218,269 290,269 290,266 356,266" class="w-gnd"/>
+  <!-- 5V: joystick VCC → Arduino 5V (left) -->
+  <polyline points="218,287 295,287 295,286 356,286" class="w-vcc"/>
+  <!-- VRx → A0 -->
+  <polyline points="218,305 300,305 300,306 356,306" class="w-green"/>
+  <!-- VRy → A1 -->
+  <polyline points="218,323 305,323 305,326 356,326" class="w-green"/>
+  <!-- SW → D6 -->
+  <!-- goes up and around via top -->
+  <polyline points="218,341 320,341 320,210 660,210 660,306 644,306" class="w-green"/>
+
+  <!-- ══════════════════════════════════════════════════
+       WIRES — MAX7219 to Arduino RIGHT SIDE
+  ══════════════════════════════════════════════════ -->
+  <!-- GND: matrix GND → Arduino GND right -->
+  <polyline points="730,265 690,265 690,266 644,266" class="w-gnd"/>
+  <!-- VCC: matrix VCC → Arduino 5V right -->
+  <polyline points="730,283 694,283 694,286 644,286" class="w-vcc"/>
+  <!-- DIN → D11 -->
+  <polyline points="730,301 698,301 698,346 644,346" class="w-data"/>
+  <!-- CLK → D13 -->
+  <polyline points="730,319 702,319 702,366 644,366" class="w-clk"/>
+  <!-- CS → D10 -->
+  <polyline points="730,337 706,337 706,326 644,326" class="w-cs"/>
+
+  <!-- ══════════════════════════════════════════════════
+       WIRES — LCD to Arduino BOTTOM / LEFT
+  ══════════════════════════════════════════════════ -->
+  <!-- GND: LCD GND → Arduino GND left (goes left up) -->
+  <polyline points="522,640 546,640 546,560 340,560 340,266 356,266" class="w-gnd"/>
+  <!-- VCC: LCD VCC → Arduino 5V left -->
+  <polyline points="522,657 550,657 550,564 344,564 344,286 356,286" class="w-vcc"/>
+  <!-- SDA → A4 -->
+  <polyline points="522,674 554,674 554,568 348,568 348,346 356,346" class="w-sda"/>
+  <!-- SCL → A5 -->
+  <polyline points="522,691 558,691 558,572 352,572 352,366 356,366" class="w-scl"/>
+
+  <!-- Junction dots -->
+  <!-- GND bus left junctions -->
+  <circle cx="290" cy="266" r="3.5" fill="#6b7280"/>
+  <circle cx="340" cy="560" r="3.5" fill="#6b7280"/>
+  <!-- VCC bus left junctions -->
+  <circle cx="295" cy="286" r="3.5" fill="#ef4444"/>
+  <circle cx="344" cy="564" r="3.5" fill="#ef4444"/>
+
+  <!-- ══════════════════════════════════════════════════
+       WIRE LABELS ON LINES
+  ══════════════════════════════════════════════════ -->
+  <!-- Left side labels -->
+  <text x="325" y="264" class="pin-label" text-anchor="middle" fill="#6b7280">GND</text>
+  <text x="325" y="284" class="pin-label" text-anchor="middle" fill="#ef4444">5V</text>
+  <text x="330" y="303" class="pin-label" text-anchor="middle" fill="#22c55e">VRx</text>
+  <text x="330" y="323" class="pin-label" text-anchor="middle" fill="#22c55e">VRy</text>
+  <text x="490" y="207" class="pin-label" text-anchor="middle" fill="#22c55e">SW → D6</text>
+
+  <!-- Right side labels -->
+  <text x="686" y="263" class="pin-label" text-anchor="end" fill="#6b7280">GND</text>
+  <text x="686" y="281" class="pin-label" text-anchor="end" fill="#ef4444">5V</text>
+  <text x="726" y="299" class="pin-label" text-anchor="end" fill="#f59e0b">DIN→D11</text>
+  <text x="726" y="317" class="pin-label" text-anchor="end" fill="#f97316">CLK→D13</text>
+  <text x="726" y="335" class="pin-label" text-anchor="end" fill="#ec4899">CS→D10</text>
+
+  <!-- LCD labels -->
+  <text x="546" y="637" class="pin-label" fill="#6b7280">GND</text>
+  <text x="550" y="654" class="pin-label" fill="#ef4444">5V</text>
+  <text x="554" y="671" class="pin-label" fill="#8b5cf6">SDA→A4</text>
+  <text x="558" y="688" class="pin-label" fill="#06b6d4">SCL→A5</text>
+
+  <!-- ══════════════════════════════════════════════════
+       LEGEND — Bottom left
+  ══════════════════════════════════════════════════ -->
+  <rect x="30" y="590" width="260" height="115" rx="6" class="note-box"/>
+  <text x="46" y="608" class="chip-label" font-size="10">WIRE LEGEND</text>
+  <line x1="46" y1="618" x2="160" y2="618" stroke="#6b7280" stroke-width="2" stroke-linecap="round" class="legend-line"/>
+  <text x="168" y="622" class="legend-text">GND</text>
+  <line x1="46" y1="633" x2="160" y2="633" stroke="#ef4444" stroke-width="2" stroke-linecap="round" class="legend-line"/>
+  <text x="168" y="637" class="legend-text">VCC  (+5V power)</text>
+  <line x1="46" y1="648" x2="160" y2="648" stroke="#22c55e" stroke-width="2" stroke-linecap="round" class="legend-line"/>
+  <text x="168" y="652" class="legend-text">Joystick signals</text>
+  <line x1="46" y1="663" x2="160" y2="663" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" class="legend-line"/>
+  <text x="168" y="667" class="legend-text">SPI DATA  (DIN)</text>
+  <line x1="46" y1="678" x2="160" y2="678" stroke="#f97316" stroke-width="2" stroke-linecap="round" class="legend-line"/>
+  <text x="168" y="682" class="legend-text">SPI CLOCK (CLK)</text>
+  <line x1="46" y1="693" x2="160" y2="693" stroke="#ec4899" stroke-width="2" stroke-linecap="round" class="legend-line"/>
+  <text x="168" y="697" class="legend-text">SPI CS    (D10)</text>
+
+  <!-- I2C legend continued -->
+  <rect x="30" y="490" width="260" height="92" rx="6" class="note-box"/>
+  <text x="46" y="508" class="chip-label" font-size="10">I2C BUS</text>
+  <line x1="46" y1="520" x2="160" y2="520" stroke="#8b5cf6" stroke-width="2" class="legend-line"/>
+  <text x="168" y="524" class="legend-text">SDA  → A4</text>
+  <line x1="46" y1="535" x2="160" y2="535" stroke="#06b6d4" stroke-width="2" class="legend-line"/>
+  <text x="168" y="539" class="legend-text">SCL  → A5</text>
+  <text x="46" y="554" class="note-text">I2C addr: 0x27 (default)</text>
+  <text x="46" y="567" class="note-text">Try 0x3F if LCD is blank</text>
+  <text x="46" y="578" class="note-text">Only 2 wires needed for LCD!</text>
+
+  <!-- ══════════════════════════════════════════════════
+       LIBRARIES NOTE — Top left
+  ══════════════════════════════════════════════════ -->
+  <rect x="30" y="68" width="300" height="126" rx="6" class="note-box"/>
+  <text x="46" y="86" class="chip-label" font-size="10">REQUIRED LIBRARIES</text>
+  <text x="46" y="102" class="note-text">① MD_MAX72XX   by MajicDesigns</text>
+  <text x="46" y="116" class="note-text">② MD_Parola    by MajicDesigns</text>
+  <text x="46" y="130" class="note-text">③ LiquidCrystal_I2C  by Frank de Brabander</text>
+  <text x="46" y="148" class="chip-label" font-size="10">HARDWARE TYPE</text>
+  <text x="46" y="162" class="note-text">FC16_HW  (most common cheap module)</text>
+  <text x="46" y="176" class="note-text">Try GENERIC_HW if display is flipped</text>
+  <text x="46" y="190" class="note-text">Joystick button: INPUT_PULLUP on D6</text>
+
+  <!-- ══════════════════════════════════════════════════
+       HOW TO USE note — top right
+  ══════════════════════════════════════════════════ -->
+  <rect x="670" y="350" width="300" height="130" rx="6" class="note-box"/>
+  <text x="686" y="368" class="chip-label" font-size="10">HOW TO USE</text>
+  <text x="686" y="384" class="note-text">① Tilt joystick to move cursor (blinking LED)</text>
+  <text x="686" y="398" class="note-text">② SHORT press = toggle dot ON / OFF</text>
+  <text x="686" y="412" class="note-text">③ LONG press (&gt;1s) = confirm letter → LCD</text>
+  <text x="686" y="430" class="note-text">Braille zone = top-left 2×3 area of matrix</text>
+  <text x="686" y="444" class="note-text">Amber border always lit = easy to find</text>
+  <text x="686" y="460" class="note-text">Cursor resets to dot-1 after each letter</text>
+
+  <!-- BRAILLE DOT MAP — top right bottom -->
+  <rect x="670" y="490" width="300" height="90" rx="6" class="note-box"/>
+  <text x="686" y="508" class="chip-label" font-size="10">BRAILLE DOT LAYOUT ON MATRIX</text>
+  <!-- mini grid -->
+  <rect x="686" y="516" width="56" height="56" rx="2" fill="#0f0a04" stroke="#3d2510" stroke-width="1"/>
+  <circle cx="700" cy="530" r="6" fill="#b45309" opacity="0.9"/>
+  <circle cx="730" cy="530" r="6" fill="#b45309" opacity="0.9"/>
+  <circle cx="700" cy="547" r="6" fill="#b45309" opacity="0.9"/>
+  <circle cx="730" cy="547" r="6" fill="#b45309" opacity="0.9"/>
+  <circle cx="700" cy="563" r="6" fill="#b45309" opacity="0.9"/>
+  <circle cx="730" cy="563" r="6" fill="#b45309" opacity="0.9"/>
+  <text x="700" y="534" class="section-label" text-anchor="middle" font-size="8" fill="white">1</text>
+  <text x="730" y="534" class="section-label" text-anchor="middle" font-size="8" fill="white">4</text>
+  <text x="700" y="551" class="section-label" text-anchor="middle" font-size="8" fill="white">2</text>
+  <text x="730" y="551" class="section-label" text-anchor="middle" font-size="8" fill="white">5</text>
+  <text x="700" y="567" class="section-label" text-anchor="middle" font-size="8" fill="white">3</text>
+  <text x="730" y="567" class="section-label" text-anchor="middle" font-size="8" fill="white">6</text>
+  <text x="756" y="526" class="note-text">col 1 = left dots  (1,2,3)</text>
+  <text x="756" y="540" class="note-text">col 2 = right dots (4,5,6)</text>
+  <text x="756" y="554" class="note-text">row 1,2,3 = top→bottom</text>
+  <text x="756" y="568" class="note-text">amber frame = always ON</text>
+
+  <!-- Footer -->
+  <rect x="0" y="704" width="1000" height="16" fill="#0a0d14"/>
+  <line x1="0" y1="704" x2="1000" y2="704" stroke="#1e2d47" stroke-width="1"/>
+  <text x="500" y="715" class="sub-text" text-anchor="middle">github.com — Braille Writer Project — Arduino Uno R3  |  MAX7219 FC16  |  I2C LCD 16×2</text>
+</svg>
